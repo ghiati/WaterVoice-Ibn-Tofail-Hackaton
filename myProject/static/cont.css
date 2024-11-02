@@ -1,0 +1,17 @@
+
+.alert {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.alert-success {
+    
+    color: #155724;
+}
+
+.alert-danger {
+    
+    color: #721c24;
+}
