@@ -1,0 +1,37 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+header{
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    color: rgb(255, 140, 0);
+}
+nav{
+    display: flex;
+    width: 60%;
+    background-color: aqua;
+    justify-content: space-around;
+    align-items: center;
+}
+.loginS{
+    display: flex;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+a {
+    text-decoration: none; /* Enlève la ligne sous le lien */
+    color: inherit; /* Optionnel : garde la couleur du texte par défaut */
+    font-size: 23px;
+}
+
+a:hover {
+    text-decoration: underline; /* Ajoute une ligne lors du survol, si souhaité */
+    font-size: 30px;
+    color: white;
+}
