@@ -5,14 +5,18 @@ from langchain_core.output_parsers import StrOutputParser
 from utils.prompt_templates import get_report_prompt ,get_research_prompt
 parser = StrOutputParser()
 
-async def generate_report():
+def generate_report():
+    # Current month and year
     current_month = datetime.now().strftime("%B")
     current_year = datetime.now().year
-    
+
+    # Get research prompt and perform search
     research_prompt = get_research_prompt(current_month, current_year)
-    search_results = tool.run(research_prompt)
+    search_results = tool.run(research_prompt)  # Assuming this is synchronous
 
-    report_prompt = get_report_prompt(current_month,current_year,search_results)
-
+    # Get report prompt and generate the report
+    report_prompt = get_report_prompt(current_month, current_year, search_results)
     chain = model | parser
-    return {"report": chain.invoke(report_prompt)}
+    report = chain.invoke(report_prompt)  # Assuming this is also synchronous
+
+    return {"report": report}
