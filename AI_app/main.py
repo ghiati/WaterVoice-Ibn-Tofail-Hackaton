@@ -1,20 +1,12 @@
-# main.py
-from fastapi import FastAPI, HTTPException
+from flask import Flask, jsonify, request
 from services.report_service import generate_report
-from services.quiz_service import generate_quiz
+app = Flask(__name__)
 
-app = FastAPI()
-
-@app.get("/generate_report")
-async def generate_report_route():
+@app.route("/generate_report", methods=["GET"])
+def generate_report_route():
     try:
-        return await generate_report()
+        # Call the synchronous wrapper around the async function
+        report = generate_report()
+        return jsonify(report)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/generate_quiz")
-async def generate_quiz_route():
-    try:
-        return await generate_quiz()
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        return jsonify({"error": str(e)}), 500
