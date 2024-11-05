@@ -49,12 +49,14 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
-
+    
 
     from myProject.main.route import main as main_blueprint
     from myProject.routes import route
+    # from game.routes import game
     app.register_blueprint(main_blueprint)
     app.register_blueprint(route)
+    # app.register_blueprint(game)
 
     return app
 

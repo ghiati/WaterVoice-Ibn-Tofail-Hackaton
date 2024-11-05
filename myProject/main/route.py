@@ -26,10 +26,6 @@ def login():
     return render_template("login.html", title="Login", form=form)
 
 
-
-
-
-
 @main.route("/register", methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
