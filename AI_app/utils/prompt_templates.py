@@ -28,14 +28,3 @@ def get_research_prompt(current_month, current_year):
 
     Provide an overview that highlights these aspects specifically, so the report will reflect the latest news and expert insights from this period.
     """
-
-
-def get_quiz_prompt():
-    return """
-    Create 5 multiple-choice questions based on recent information about water scarcity in Morocco.
-    Each question should have:
-    - A question text
-    - Four answer choices labeled A, B, C, and D
-    - One correct answer
-    Format the response in JSON with question text, choices, and correct answer.
-    """
