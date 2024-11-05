@@ -393,6 +393,9 @@ main {
     background-size: cover;
     background-position: center;
 }
+.x{
+    margin-top: 30px;
+}
 
 .navbar {
     position: fixed;
@@ -555,3 +558,6 @@ a {
 }
 }
   
+.x{
+    margin-top: 30px;
+}

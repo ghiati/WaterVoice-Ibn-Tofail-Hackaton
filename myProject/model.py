@@ -1,5 +1,10 @@
 from . import db
 from flask_login import UserMixin
+from flask_wtf.file import FileAllowed
+from wtforms import StringField, TextAreaField, FileField
+from wtforms.validators import DataRequired
+
+from flask_wtf import FlaskForm
 
 class User(db.Model, UserMixin):  # Ensure UserMixin is inherited
     id = db.Column(db.Integer, primary_key=True)
@@ -12,3 +17,5 @@ class User(db.Model, UserMixin):  # Ensure UserMixin is inherited
 
     def __repr__(self):
         return f'<User {self.numero}>'
+    
+

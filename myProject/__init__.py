@@ -52,7 +52,9 @@ def create_app():
 
 
     from myProject.main.route import main as main_blueprint
+    from myProject.routes import route
     app.register_blueprint(main_blueprint)
+    app.register_blueprint(route)
 
     return app
 

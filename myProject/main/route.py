@@ -11,7 +11,7 @@ main = Blueprint('main', __name__)
 @main.route('/',methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
+        return redirect(url_for('route.home'))
     form = LoginForm()
     if form.validate_on_submit():
         
@@ -20,7 +20,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             flash("You have been logged in!", "success")
-            return  redirect(url_for('main.home'))
+            return  redirect(url_for('route.home'))
         else:
             flash("Login Unsuccessful. Please check your email and password.", "danger")
     return render_template("login.html", title="Login", form=form)
@@ -73,7 +73,4 @@ def register():
         return redirect(url_for('main.login'))
 
     return render_template('registre.html', form=form)
-@main.route("/home")
-@login_required
-def home():
-    return render_template('index.html', title="Home")
+
