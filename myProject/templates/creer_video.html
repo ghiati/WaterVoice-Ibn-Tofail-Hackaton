@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Video</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+        }
+        .alert {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Create Video</h1>
+
+    {% if current_user.is_winner %}
+        <p>Congratulations! You have won and can now upload your video.</p>
+    {% else %}
+        <p>You are not eligible to upload a video yet. You need to win the game first.</p>
+        <a href="{{ url_for('route.index') }}" class="btn btn-primary">Back to Home</a>
+        <hr>
+    {% endif %}
+
+    <!-- Video Upload Form -->
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            <label for="title">Video Title</label>
+            {{ form.title(class="form-control", placeholder="Enter video title") }}
+        </div>
+
+        <div class="form-group">
+            <label for="video">Choose Video</label>
+            {{ form.video(class="form-control-file") }}
+            {% if form.video.errors %}
+                <div class="text-danger">
+                    {% for error in form.video.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-success">Upload Video</button>
+    </form>
+
+    {% if video %}
+        <hr>
+        <h3>Uploaded Video:</h3>
+        <video width="400" controls>
+            <source src="{{ url_for('static', filename='uploads/' + video.video_filename) }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    {% endif %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

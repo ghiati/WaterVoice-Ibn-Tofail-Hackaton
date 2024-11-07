@@ -1,10 +1,13 @@
-<!-- templates/home.html -->
-{% extends "base.html" %}
-
-{% block title %}Accueil{% endblock %}
-
+{% extends "layout.html" %}
 {% block content %}
-
-
-
+<h1>Bienvenue au Défi Hebdomadaire</h1>
+<p>Le prochain défi commence dans :</p>
+<p><strong>{{ next_reset }}</strong></p>
+<p>Règles du jeu :</p>
+<ul>
+    <li>Participez au défi hebdomadaire pour tenter de gagner.</li>
+    <li>Le joueur avec le meilleur score peut créer une vidéo.</li>
+    <li>Revenez chaque semaine pour une nouvelle chance de gagner !</li>
+</ul>
+<a href="{{ url_for('route.jeu') }}" class="btn">Jouer Maintenant</a>
 {% endblock %}

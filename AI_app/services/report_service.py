@@ -1,6 +1,8 @@
 # services/report_service.py
 from datetime import datetime
 from config import model, tool
+
+
 from langchain_core.output_parsers import StrOutputParser
 from utils.prompt_templates import get_report_prompt ,get_research_prompt
 parser = StrOutputParser()

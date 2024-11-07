@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleGame.css') }}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/animate.min.css') }}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/nivo-lightbox.css') }}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/nivo_themes/default/default.css') }}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/style.css') }}">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body data-spy="" data-target=".navbar-collapse" data-offset="50">
+
+
+<!-- navigation section -->
+<section class="navbar navbar-fixed-top custom-navbar v " role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand"><span class="bold">Blaster</span></a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li ><a href="{{url_for('route.home')}}" class="smoothScroll"><i class='bx bx-news'></i></a></li>
+				<li ><a href="{{url_for('route.rappore')}}" class="smoothScroll" ><i class='bx bx-bell'></i></a></li>
+				<li ><a href="{{url_for('route.rappore')}}" class="smoothScroll"><i class='bx bx-cloud'></i></a></li>
+				<li ><a href="{{url_for('route.index')}}" class="smoothScroll"><i class='bx bx-edit'></i></a></li>
+				<li ><a href="{{url_for('route.about')}}" class="smoothScroll">about</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{category}} text-center">
+    {{message}}
+</div>
+{% endfor %}
+
+{% endif %}
+{% endwith %}
+<!-- navigation section -->
+<section id="team">
+    <div class="container time1">
+         <header>
+        <nav>
+            <a href="{{ url_for('route.index') }}"><h4>Accueil</h4></a>
+            <a href="{{ url_for('route.jeu') }}"><h4>Jeu</h4></a>
+            <a href="{{ url_for('route.create_video') }}"><h4>Créer une Vidéo</h4></a>
+        </nav>
+    </header>
+    </div>
+</section>
+   
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Mon Application de Jeu</p>
+    </footer>
+    <script src="static/js/jquery.js"></script>
+<script src="static/js/timre.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/smoothscroll.js"></script>
+<script src="static/js/isotope.js"></script>
+<script src="static/js/imagesloaded.min.js"></script>
+<script src="static/js/nivo-lightbox.min.js"></script>
+<script src="static/js/wow.min.js"></script>
+<script src="static/js/custom.js"></script>
+</body>
+</html>
