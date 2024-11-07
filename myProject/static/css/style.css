@@ -113,7 +113,7 @@ p {
 
 /* home section */
 #home {
- background: url('../images/bg.jpg') no-repeat;
+ background: url('../images/db.jpg') no-repeat;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center; 
@@ -126,7 +126,7 @@ p {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vh;
+  height: 70vh;
   text-align: center;
   background-blend-mode: multiply;
   background-color:  #7a79792e;

@@ -3,6 +3,8 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField,TextAr
 from wtforms.validators import DataRequired, Email, Length, Regexp, ValidationError
 from flask_login import current_user
 from .model import User
+from flask_wtf.file import FileAllowed
+from wtforms import StringField, FileField
 
 class RegistrationForm(FlaskForm):
     first_name = StringField('First Name', 
@@ -50,3 +52,8 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+    
+class VideoUploadForm(FlaskForm):
+    title = StringField('Video Title', validators=[DataRequired()])
+    video = FileField('Upload Video', validators=[DataRequired(), FileAllowed(['mp4', 'mov', 'avi', 'mkv'], 'Videos only!')])
+

@@ -1,122 +1,13 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guess the Number Game</title>
-  <style>
-    body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-    .container { text-align: center; max-width: 300px; }
-    button { padding: 10px 20px; margin: 10px; }
-    input[type="number"] { width: 100%; padding: 10px; margin-top: 10px; }
-  </style>
-</head>
-<body>
-
-<div class="container">
-  <h1>Guess the Number</h1>
-  <button id="startGameBtn">Start New Game</button>
-  <div id="gameSection" style="display: none;">
-    <input type="number" id="guessInput" placeholder="Enter your guess (1-10)" min="1" max="10">
-    <button id="submitGuessBtn">Submit Guess</button>
-    <p id="resultMessage"></p>
-  </div>
-  <div id="uploadSection" style="display: none;">
-    <input type="file" id="videoFile" accept="video/*">
-    <button id="uploadVideoBtn">Upload Video</button>
-    <p id="uploadMessage"></p>
-  </div>
-</div>
-
-<script>
-  const startGameBtn = document.getElementById('startGameBtn');
-  const gameSection = document.getElementById('gameSection');
-  const guessInput = document.getElementById('guessInput');
-  const submitGuessBtn = document.getElementById('submitGuessBtn');
-  const resultMessage = document.getElementById('resultMessage');
-  const uploadSection = document.getElementById('uploadSection');
-  const videoFile = document.getElementById('videoFile');
-  const uploadVideoBtn = document.getElementById('uploadVideoBtn');
-  const uploadMessage = document.getElementById('uploadMessage');
-
-  let gameId = null;
-  const userId = 1; // Dummy user ID for this example
-
-  startGameBtn.addEventListener('click', async () => {
-    try {
-      const response = await fetch('/start-game/', { method: 'POST' });
-      const data = await response.json();
-
-      if (response.ok) {
-        gameId = data.game_id;
-        gameSection.style.display = 'block';
-        uploadSection.style.display = 'none';
-        resultMessage.textContent = data.message;
-      } else {
-        resultMessage.textContent = data.detail;
-      }
-    } catch (error) {
-      resultMessage.textContent = 'Error starting the game.';
-    }
-  });
-
-  submitGuessBtn.addEventListener('click', async () => {
-    const guess = parseInt(guessInput.value);
-
-    if (!gameId) {
-      resultMessage.textContent = 'No active game found. Start a new game first!';
-      return;
-    }
-
-    try {
-      const response = await fetch('/guess/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId, guess: guess })
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        resultMessage.textContent = data.message;
-        if (data.winner_id) {
-          gameSection.style.display = 'none'; // Hide guess section if game won
-          uploadSection.style.display = 'block'; // Show upload section for the winner
-        }
-      } else {
-        resultMessage.textContent = data.detail;
-      }
-    } catch (error) {
-      resultMessage.textContent = 'Error submitting guess.';
-    }
-  });
-
-  uploadVideoBtn.addEventListener('click', async () => {
-    if (!videoFile.files[0]) {
-      uploadMessage.textContent = 'Please select a video file.';
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('file', videoFile.files[0]);
-    formData.append('user_id', userId);
-
-    try {
-      const response = await fetch('/upload-video/', {
-        method: 'POST',
-        body: formData
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        uploadMessage.textContent = data.message;
-      } else {
-        uploadMessage.textContent = data.detail;
-      }
-    } catch (error) {
-      uploadMessage.textContent = 'Error uploading video.';
-    }
-  });
-</script>
-
-</body>
-</html> -->
+{% extends "layout.html" %}
+{% block content %}
+<h1>Bienvenue au Défi Hebdomadaire</h1>
+<p>Le prochain défi commence dans :</p>
+<p><strong>{{ next_reset }}</strong></p>
+<p>Règles du jeu :</p>
+<ul>
+    <li>Participez au défi hebdomadaire pour tenter de gagner.</li>
+    <li>Le joueur avec le meilleur score peut créer une vidéo.</li>
+    <li>Revenez chaque semaine pour une nouvelle chance de gagner !</li>
+</ul>
+<a href="{{ url_for('route.jeu') }}" class="btn">Jouer Maintenant</a>
+{% endblock %}

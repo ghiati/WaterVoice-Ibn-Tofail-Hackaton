@@ -27,7 +27,88 @@ http://www.templatemo.com/tm-472-blaster
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+<style>
+	.container1 {
+    max-width: 800px;
+    margin: auto;
+	margin-left: 0px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Alignement à gauche */
+}
 
+h1 {
+    color: #333;
+	font-size: 23px;
+	height: 3px;
+}
+
+h2 {
+    color: #ce0000;
+	font-size: 17px;
+	background-color: #3000ce;
+}
+
+ul, ol {
+    margin-left: 20px;
+	color: #3000ce;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #000000;
+}
+p::first-line {
+            color: rgb(0, 0, 0);
+			font-size: 20px; /* Première ligne en rouge */
+            font-weight: bold; /* Optionnel : gras pour démarquer la première ligne */
+        }
+.x{
+			margin-top: 20px;
+}
+
+.highlight-second-line {
+            color: red; /* Couleur de la deuxième ligne */
+            font-weight: bold; /* Optionnel : en gras */
+}
+.time{
+	background-color: #eddac07e;
+	width: 300px;
+	/* height: 200px; */
+	position: fixed;
+	top :300px;
+	right: 15px;
+
+}
+
+.container12 {
+    background-color:  #eddac07e;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+	
+}
+
+.container12 h1 {
+    font-size: 24px;
+    margin-bottom: auto;
+}
+
+#countdown p {
+	margin-top: 90px;
+    font-size: 48px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+
+
+</style>
 </head>
 
 <body data-spy="" data-target=".navbar-collapse" data-offset="50">
@@ -46,7 +127,7 @@ http://www.templatemo.com/tm-472-blaster
 					<li ><a href="{{url_for('route.home')}}" class="smoothScroll"><i class='bx bx-news'></i></a></li>
 					<li ><a href="{{url_for('route.rappore')}}" class="smoothScroll" ><i class='bx bx-bell'></i></a></li>
 					<li ><a href="{{url_for('route.rappore')}}" class="smoothScroll"><i class='bx bx-cloud'></i></a></li>
-					<li ><a href="{{url_for('route.create')}}" class="smoothScroll"><i class='bx bx-edit'></i></a></li>
+					<li ><a href="{{url_for('route.index')}}" class="smoothScroll"><i class='bx bx-edit'></i></a></li>
 					<li ><a href="{{url_for('route.about')}}" class="smoothScroll">about</a></li>
 				</ul>
 			</div>
@@ -54,18 +135,29 @@ http://www.templatemo.com/tm-472-blaster
 	</section>
 <!-- navigation section -->
 <section id="team">
-    <div class="container">
+    <div class="container time1">
         <div class="row">
             <form  method="POST">
-                <div class="col-md-12 col-sm-12">
-                    <h1 class="heading bold">OUR TEAM</h1>
-                    <h2 class="subheading">CREATIVE TALENTS FROM WEST COAST</h2>
+                <!-- <div class="col-md-12 col-sm-12" id="tiame">
+                    
+                </div> -->
+                <div class="report-content animated fadeIn x">
+					<div class="container1">
+						
+						<p>{{ x | safe }} </p> <!-- Utiliser le filtre 'safe' pour afficher le HTML -->
+					</div>
                 </div>
-                <div class="col-md-12 col-sm-12">
-                    <textarea class="col-md-12 col-sm-12" id="rappore" readonly>{{ x }}</textarea>
-                </div>
+
             </form>
         </div>
+		<div class="time">
+			<div class="container12">
+				<h1>The remaining time to remove the report</h1>
+				<div id="countdown">
+					<p id="timer">00:00:00</p>
+				</div>
+			</div>
+		</div>
     </div>
 </section>
 
@@ -77,6 +169,7 @@ http://www.templatemo.com/tm-472-blaster
 
 <!-- JAVASCRIPT JS FILES -->	
 <script src="static/js/jquery.js"></script>
+<script src="static/js/timre.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/smoothscroll.js"></script>
 <script src="static/js/isotope.js"></script>
@@ -113,6 +206,19 @@ http://www.templatemo.com/tm-472-blaster
             item.parentElement.classList.add('active1');
         });
     });
+
+	
+        document.addEventListener("DOMContentLoaded", function() {
+            const paragraph = document.getElementById("report-text");
+            const lines = paragraph.innerHTML.split("\n");  // Divise le texte en lignes
+            
+            if (lines.length >= 2) {
+                // Colorer les deux premières lignes
+                paragraph.innerHTML = `<span class="highlighted">${lines[0]}<br>${lines[1]}</span><br>` + 
+                                      lines.slice(2).join("<br>");
+            }
+        });
+    
 </script>
 </body>
 </html>
