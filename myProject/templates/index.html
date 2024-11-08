@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Bienvenue au Défi Hebdomadaire</h1>
-<p>Le prochain défi commence dans :</p>
+<h1>Welcome to the Weekly Challenge</h1>
+<p>The next challenge starts in:</p>
 <p><strong>{{ next_reset }}</strong></p>
-<p>Règles du jeu :</p>
+<p>Game Rules:</p>
 <ul>
-    <li>Participez au défi hebdomadaire pour tenter de gagner.</li>
-    <li>Le joueur avec le meilleur score peut créer une vidéo.</li>
-    <li>Revenez chaque semaine pour une nouvelle chance de gagner !</li>
+    <li>Participate in the weekly challenge for a chance to win.</li>
+    <li>The player with the highest score can create a video.</li>
+    <li>Come back every week for a new chance to win!</li>
 </ul>
-<a href="{{ url_for('route.jeu') }}" class="btn">Jouer Maintenant</a>
+<a href="{{ url_for('route.jeu') }}" class="btn">Play Now</a>
 {% endblock %}
